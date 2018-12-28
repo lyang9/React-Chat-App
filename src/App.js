@@ -7,6 +7,12 @@ import MessageList from './components/MessageList';
 import { instanceLocator, tokenUrl } from './config';
 
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      messages: []
+    }
+  }
 
   componentDidMount() {
     const chatManager = new Chatkit.ChatManager({
@@ -24,6 +30,9 @@ class App extends Component {
         hooks: {
           onNewMessage: message => {
             console.log('message.text: ', message.text);
+            this.setState({
+              messages: [...this.state.messages, message]
+            })
           }
         }
       })
@@ -31,9 +40,10 @@ class App extends Component {
   }
 
   render() {
+    // console.log('messages: ', this.state.messages);
     return (
       <div className="App">
-        <MessageList />
+        <MessageList messages={this.state.messages}/>
       </div>
     );
   }
