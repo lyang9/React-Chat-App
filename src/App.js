@@ -16,6 +16,18 @@ class App extends Component {
         url: tokenUrl
       })
     })
+
+    chatManager.connect()
+    .then(currentUser => {
+      currentUser.subscribeToRoom({
+        roomId: 19376371,
+        hooks: {
+          onNewMessage: message => {
+            console.log('message.text: ', message.text);
+          }
+        }
+      })
+    })
   }
 
   render() {
