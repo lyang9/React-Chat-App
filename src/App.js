@@ -3,6 +3,7 @@ import './App.css';
 
 import Chatkit from '@pusher/chatkit';
 import MessageList from './components/MessageList';
+import SendMessageForm from './components/SendMessageForm';
 
 import { instanceLocator, tokenUrl } from './config';
 
@@ -44,6 +45,7 @@ class App extends Component {
     return (
       <div className="App">
         <MessageList messages={this.state.messages}/>
+        <SendMessageForm />
       </div>
     );
   }
